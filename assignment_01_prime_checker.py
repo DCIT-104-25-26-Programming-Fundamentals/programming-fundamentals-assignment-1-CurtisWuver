@@ -35,3 +35,23 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+
+
+
+
+
+#accepting number to be checked.
+print("This program checks if a number is prime.")
+n = int(input("Enter a number: "))
+def is_prime(n):
+    #numbers less than 2 are not prime.
+    if n < 2:
+        return f"{n} is not a prime number."
+    #looking for possible factors
+    for i in range(2, n):
+            if n % i == 0:
+                return f"{n} is not a prime number."
+            else:
+                return f"{n} is a prime number."
+            #calling the function and printing the outcome
+print(is_prime(n))
