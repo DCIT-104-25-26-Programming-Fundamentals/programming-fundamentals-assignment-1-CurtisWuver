@@ -68,3 +68,87 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+
+
+
+def get_numbers():
+    return float(input("Enter first number : ")), float(input("Enter second number: "))
+
+
+def add(a, b):
+    # Returns the sum of a and b
+    return a + b
+
+
+def subtract(a, b):
+    # Returns the difference of a and b
+    return a - b
+
+
+def multiply(a, b):
+    # Returns the product of a and b
+    return a * b
+
+
+def divide(a, b):
+    # Returns the quotient of a and b, rounded to 2 decimal places
+    if b == 0:
+     print("Cannot divide by zero.")
+     return None
+    return round(a / b, 2)
+
+
+def modulus(a, b):
+    # Returns the remainder of a divided by b
+    if b == 0:
+     print("Cannot divide by zero.")
+     return None
+    return round(a % b, 2)
+
+
+def exponentiate(a, b):
+    # Returns a raised to the power of b
+    return a ** b
+
+
+OPERATIONS = {
+    "1": ("+", add),
+    "2": ("-", subtract),
+    "3": ("*", multiply),
+    "4": ("/", divide),
+    "5": ("%", modulus),
+    "6": ("**", exponentiate),
+}
+
+
+def perform_operation(choice):
+    a, b = get_numbers()
+    symbol, func = OPERATIONS[choice]
+
+    result = func(a, b)
+    if result is not None:
+        print(f"Result: {a} {symbol} {b} = {result}")
+    else:
+        print("Error: Cannot perform operation.")
+
+
+def main():
+    menu = ("1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n"
+            "5. Modulus\n6. Exponentiation\n7. Quit")
+
+    while True:
+        print(menu)
+        choice = input("Select an operation (1-7): ")
+
+        if choice in OPERATIONS:
+            perform_operation(choice)
+        elif choice == "7":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 7.")
+
+
+if __name__ == "__main__":
+    main()
+    #end

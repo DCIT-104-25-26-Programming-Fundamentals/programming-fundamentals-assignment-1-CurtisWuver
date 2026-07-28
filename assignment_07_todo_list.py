@@ -79,3 +79,61 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+
+tasks = []
+def add_task():
+    task = input("Enter task: ")
+    tasks.append(task)
+    print(f'Task added: "{task}"')
+
+#displays the tasks in the list
+def show_tasks():
+    if not tasks:
+        print("You have no tasks in your list.")
+        return
+    print("Your Tasks:")
+    for i, task in enumerate(tasks, 1):
+        print(f"  {i}. {task}")
+
+#deleting tasks
+def delete_task():
+    if not tasks:
+        print("Your task list is empty. Nothing to delete.")
+        return
+
+    show_tasks()
+    choice = int(input("Enter the number of the task you want to delete: "))
+
+    if choice < 1 or choice > len(tasks):
+        print(
+            f"Invalid task number. Please enter a number between 1 and {len(tasks)}.")
+        return
+
+    removed = tasks.pop(choice - 1)
+    print(f'Task "{removed}" has been removed.')
+
+
+def quit_program():
+    print("Goodbye!")
+
+
+def main():
+    menu = "1. Add task\n2. View tasks\n3. Delete task\n4. Quit"
+    actions = {"1": add_task, "2": show_tasks, "3": delete_task}
+
+    while True:
+        print(menu)
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == "4":
+            quit_program()
+            break
+        elif choice in actions:
+            actions[choice]()
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+
+
+if __name__ == "__main__":
+    main()
+    #end

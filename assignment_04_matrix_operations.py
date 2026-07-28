@@ -58,5 +58,72 @@
 #
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
-# =============================================================================
+# =============================# =============================================================================
+
+
+
+
+def matrix_ops(name="matrix"):
+    rows = int(input(f"Enter rows for {name}: "))
+    cols = int(input(f"Enter columns for {name}: "))
+    matrix = []
+    for i in range(rows):
+        row = list(map(float, input(f"Enter row {i + 1}: ").split()))
+        matrix.append([int(x) if x.is_integer() else x for x in row])
+    return matrix
+
+#show matrix
+def print_matrix(matrix, title="Matrix"):
+    print(f"\n{title}:")
+    widths = [max(len(str(row[c])) for row in matrix)
+              for c in range(len(matrix[0]))]
+    for row in matrix:
+        print("  ".join(str(val).rjust(widths[i])
+              for i, val in enumerate(row)))
+
+#transposing the matrix
+def transpose_matrix():
+    print("\n--- Part A: Transpose a Matrix ---")
+    m = matrix_ops()
+    rows, cols = len(m), len(m[0])
+    result = [[m[i][j] for i in range(rows)] for j in range(cols)]
+    print_matrix(m, "Original Matrix")
+    print_matrix(result, "Transposed Matrix")
+
+#adding two matrices
+def add_matrices():
+    print("\n--- Part B: Add Two Matrices ---")
+    a = matrix_ops("Matrix A")
+    b = matrix_ops("Matrix B")
+    result = [[a[i][j] + b[i][j]
+               for j in range(len(a[0]))] for i in range(len(a))]
+    print_matrix(a, "Matrix A")
+    print_matrix(b, "Matrix B")
+    print_matrix(result, "Sum (A + B)")
+
+#multiplying two matrices
+def multiply_matrices():
+    print("\n--- Part C: Multiply Two Matrices ---")
+    a = matrix_ops("Matrix A")
+    b = matrix_ops("Matrix B")
+    rows_a, cols_a, cols_b = len(a), len(a[0]), len(b[0])
+
+    result = [[sum(a[i][k] * b[k][j] for k in range(cols_a))
+               for j in range(cols_b)] for i in range(rows_a)]
+
+    print_matrix(a, "Matrix A")
+    print_matrix(b, "Matrix B")
+    print_matrix(result, "Product (A x B)")
+
+
+def main():
+    transpose_matrix()
+    add_matrices()
+    multiply_matrices()
+
+
+if __name__ == "__main__":
+    main()
+#end
+
 
